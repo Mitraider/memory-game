@@ -2,6 +2,12 @@ const dimensions = 150;
 const imgStart = Math.floor(Math.random()*100)+1;
 const gameBoard = document.getElementById("game-board");
 
+//logique de clics
+let firstClick = null;
+let secondClick = null;
+let lockBoard = false;
+let moves = 0;
+let matchedCount = 0;
 
 let images = [];
 
@@ -30,9 +36,15 @@ function InitGame(){
         card.dataset.value = imgUrl;
         card.setAttribute("role", "button");
         card.setAttribute("tabindex","0");
-        
+        card.addEventListener('click', () => handleClickCard(card));
+
         gameBoard.appendChild(card);
     });
+}
+
+function handleClickCard(card){
+    if(lockBoard) return;
+    
 }
 
 InitGame();
