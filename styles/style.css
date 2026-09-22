@@ -1,0 +1,37 @@
+body{
+    background-color: rgb(20, 18, 35);
+    text-align: center;
+    color: rgb(230, 225, 240);
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#game-board{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
+    background-color: rgb(35, 30, 55);
+    border: solid 5px rgb(70, 55, 100);
+    border-radius: 10px;
+    width: min(90vw,700px);
+    padding: 10px;
+    margin: auto;
+}
+
+.card{
+    aspect-ratio: 1/1;
+    background-color: rgb(120, 80, 160);
+    border-radius: 5%;
+}
+
+.card.matched{
+    background-color: rgb(210, 160, 90);
+}
+
+@media (max-width: 480px){
+    #game-board{
+        grid-template-columns: repeat(2,1fr);
+        gap: 6px;
+        padding: 6px;
+    }
+}

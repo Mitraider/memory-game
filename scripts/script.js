@@ -1,5 +1,8 @@
 const dimensions = 150;
 const imgStart = Math.floor(Math.random()*100)+1;
+const gameBoard = document.getElementById("game-board");
+
+
 let images = [];
 
 for(let i = 0;i < 8;i++){
@@ -15,3 +18,21 @@ function shuffle(array){
     }
     return(array);
 }
+
+
+function InitGame(){
+    shuffle(cards);
+
+    cards.forEach((imgUrl) => {
+        const card = document.createElement("div");
+
+        card.classList.add("card");
+        card.dataset.value = imgUrl;
+        card.setAttribute("role", "button");
+        card.setAttribute("tabindex","0");
+        
+        gameBoard.appendChild(card);
+    });
+}
+
+InitGame();
