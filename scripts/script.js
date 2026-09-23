@@ -44,7 +44,39 @@ function InitGame(){
 
 function handleClickCard(card){
     if(lockBoard) return;
-    
+    if(card === firstClick) return;
+    if (card.classList.contains("matched")) return;
+
+    const img = document.createElement("img");
+    img.src = card.dataset.value;
+    card.appendChild(img);
+
+    if(firstClick === null) {firstClick = card;}
+    else {secondClick = card;
+        lockBoard = true;
+        moves++;
+    }
+
+    if (firstClick.dataset.value === secondClick.dataset.value){
+        firstClick.classList.add("matched")
+        secondClick.classList.add("matched")
+        matchedCount++;
+        firstClick = null;
+        secondClick = null;
+        lockBoard = false;
+    }
+    else{
+        setTimeout(() => {
+            firstClick.innerHTML = "";
+            secondClick.innerHTML = "";
+
+            firstClick = null;
+            secondClick = null;
+
+            lockBoard = false;
+        }, 800)
+    }
+
 }
 
 InitGame();
