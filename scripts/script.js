@@ -55,11 +55,14 @@ function handleClickCard(card){
     else {secondClick = card;
         lockBoard = true;
         moves++;
+        checkMatch(firstClick, secondClick);
     }
+}
 
-    if (firstClick.dataset.value === secondClick.dataset.value){
-        firstClick.classList.add("matched")
-        secondClick.classList.add("matched")
+function checkMatch(card1, card2){
+    if (card1.dataset.value === card2.dataset.value){
+        card1.classList.add("matched")
+        card2.classList.add("matched")
         matchedCount++;
         firstClick = null;
         secondClick = null;
@@ -67,8 +70,8 @@ function handleClickCard(card){
     }
     else{
         setTimeout(() => {
-            firstClick.innerHTML = "";
-            secondClick.innerHTML = "";
+            card1.innerHTML = "";
+            card2.innerHTML = "";
 
             firstClick = null;
             secondClick = null;
@@ -76,7 +79,6 @@ function handleClickCard(card){
             lockBoard = false;
         }, 800)
     }
-
 }
 
 InitGame();
