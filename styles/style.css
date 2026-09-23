@@ -18,6 +18,14 @@ body{
     margin: auto;
 }
 
+#timer{
+    font-size: larger;
+}
+
+#moves{
+    font-size: larger;
+}
+
 .card{
     aspect-ratio: 1/1;
     background-color: rgb(120, 80, 160);

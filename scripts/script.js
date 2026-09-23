@@ -2,6 +2,8 @@ const dimensions = 150;
 const imgStart = Math.floor(Math.random()*100)+1;
 const gameBoard = document.getElementById("game-board");
 
+const movesDisplay = document.getElementById("moves");
+
 //logique de clics
 let firstClick = null;
 let secondClick = null;
@@ -10,6 +12,10 @@ let moves = 0;
 let matchedCount = 0;
 
 let images = [];
+
+let seconds = 0;
+let timerInterval = null;
+const timerDisplay = document.getElementById("timer")
 
 for(let i = 0;i < 8;i++){
     images.push(`https://picsum.photos/${dimensions}/${dimensions}?random=${imgStart+i}`);
@@ -46,6 +52,7 @@ function handleClickCard(card){
     if(lockBoard) return;
     if(card === firstClick) return;
     if (card.classList.contains("matched")) return;
+    startTimer();
 
     const img = document.createElement("img");
     img.src = card.dataset.value;
@@ -79,6 +86,20 @@ function checkMatch(card1, card2){
             lockBoard = false;
         }, 800)
     }
+}
+
+function formatTime(sec){
+    let minutes = Math.floor(sec/60);
+    let seconds = sec%60;
+    return String(minutes).padStart(2,"0")+":"+String(seconds).padStart(2,"0");
+}
+
+function startTimer(){
+    if(timerInterval != null) return;
+    timerInterval = setInterval(()=> {
+        seconds++;
+        timerDisplay.textContent = "Temps: "+formatTime(seconds);
+    }, 1000);
 }
 
 InitGame();
